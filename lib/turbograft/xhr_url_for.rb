@@ -4,7 +4,9 @@ module TurboGraft
   # request header.
   module XHRUrlFor
     def self.included(base)
-      base.alias_method_chain :url_for, :xhr_referer
+      base.alias_method :url_for_without_xhr_referer, :url_for
+      base.alias_method :url_for, :url_for_with_xhr_referer
+
     end
 
     def url_for_with_xhr_referer(options = {})
